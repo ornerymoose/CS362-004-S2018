@@ -1,0 +1,102 @@
+        -:    0:Source:cardtest1.c
+        -:    0:Graph:cardtest1.gcno
+        -:    0:Data:cardtest1.gcda
+        -:    0:Runs:0
+        -:    0:Programs:0
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <string.h>
+        -:    5:#include <stdio.h>
+        -:    6:#include <stdlib.h>
+        -:    7:#include <assert.h>
+        -:    8:
+        -:    9:/*
+        -:   10:	Card Test 1: Adventurer Card
+        -:   11:*/
+        -:   12:
+function main called 4 returned 0% blocks executed 3%
+        -:   13:int main()
+        -:   14:{	
+        -:   15:	int cardDrawn;
+        -:   16:	//treasure counts
+    #####:   17:	int treas = 0;
+    #####:   18:	int treas1 = 0;
+    #####:   19:	int treas2 = 0;
+        -:   20:	int temp[MAX_HAND];
+    #####:   21:	int seed = 1000;
+    #####:   22:	int numPlayers = 2;
+        -:   23:	struct gameState gs, testgs;
+        -:   24:	
+        -:   25:	//set up array for cards
+    #####:   26:	int k[10] = {minion, mine, adventurer, great_hall, cutpurse,
+        -:   27:	sea_hag, tribute, smithy, council_room, copper};
+        -:   28:
+    #####:   29:	printf("BEGIN Card Test 1, cardtest1.c: Adventurer\n");
+        -:   30:
+    #####:   31:	initializeGame(numPlayers, k, seed, &gs);
+    #####:   32:	memcpy(&testgs, &gs, sizeof(struct gameState));
+    #####:   33:	testgs.hand[testgs.whoseTurn][0] = minion;
+        -:   34:	
+    #####:   35:	myAdventurerFunction(&testgs, 0);
+    #####:   36:	printf("Card Count --> EXPECTED: %d, GOT: %d\n", gs.handCount[gs.whoseTurn] + 2, testgs.handCount[testgs.whoseTurn]);
+        -:   37:
+    #####:   38:	gs.discardCount[gs.whoseTurn] = 5;	
+    #####:   39:	memcpy(&testgs, &gs, sizeof(struct gameState));
+    #####:   40:	myAdventurerFunction(&testgs, 0);
+        -:   41:	
+    #####:   42:	int z = 0;
+    #####:   43:	do {
+    #####:   44:		drawCard(gs.whoseTurn, &gs);
+    #####:   45:		cardDrawn = gs.hand[gs.whoseTurn][gs.handCount[gs.whoseTurn]-1];
+    #####:   46:		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:   47:	  		treas++;
+    #####:   48:		} else {
+    #####:   49:	  		temp[z]=cardDrawn;
+    #####:   50:	  		gs.handCount[gs.whoseTurn]--; 
+    #####:   51:	  		z++;
+        -:   52:		}
+    #####:   53:    } while (treas < 4);
+branch  0 never executed
+branch  1 never executed
+    #####:   54:	printf("Card Count --> EXPECTED: %d, GOT: %d\n", gs.discardCount[gs.whoseTurn] + z, testgs.discardCount[testgs.whoseTurn]);
+        -:   55:
+    #####:   56:	for(int i = 0; i < gs.handCount[gs.whoseTurn]; i++){
+branch  0 never executed
+branch  1 never executed
+    #####:   57:		if (gs.hand[gs.whoseTurn][i] == copper || gs.hand[gs.whoseTurn][i] == silver || gs.hand[gs.whoseTurn][i] == gold){
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:   58:			treas1++;
+    #####:   59:		}		
+    #####:   60:	}
+        -:   61:	
+    #####:   62:	for(int i = 0; i < testgs.handCount[testgs.whoseTurn]; i++){
+branch  0 never executed
+branch  1 never executed
+    #####:   63:		if (testgs.hand[testgs.whoseTurn][i] == copper || testgs.hand[testgs.whoseTurn][i] == silver || testgs.hand[testgs.whoseTurn][i] == gold){
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:   64:			treas2++;
+    #####:   65:		}		
+    #####:   66:	}
+        -:   67:	
+    #####:   68:	printf("Treasure Count --> EXPECTED: %d, GOT: %d\n", treas1, treas2);
+    #####:   69:	printf("END Card Test 1, cardtest1.c: Adventurer\n");
+        -:   70:
+    #####:   71:	return 0;
+        -:   72:}

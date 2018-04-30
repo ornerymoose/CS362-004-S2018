@@ -1,0 +1,36 @@
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:10
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <string.h>
+        -:    5:#include <stdio.h>
+        -:    6:#include <stdlib.h>
+        -:    7:#include <assert.h>
+        -:    8:
+        -:    9:/*
+        -:   10:  Card Test 2: Smithy Card
+        -:   11:*/
+        -:   12:
+function main called 10 returned 100% blocks executed 100%
+        -:   13:int main(){
+       10:   14:	int seed = 1000;
+       10:   15:  	int numPlayers = 2;
+        -:   16:	struct gameState gs, testgs;
+       10:   17:	int k[10] = {copper, minion, mine, silver, gold, cutpurse, sea_hag, tribute, smithy, council_room};
+       10:   18:	printf("BEGIN Card Test 2, cardtest2.c: Smithy\n");
+       10:   19:	initializeGame(numPlayers, k, seed, &gs);
+       10:   20:	memcpy(&testgs, &gs, sizeof(struct gameState));
+       10:   21:	mySmithyFunction(&testgs, 0, 1);
+       10:   22:	printf("Card Count --> EXPECTED: %d, GOT: %d\n", gs.handCount[gs.whoseTurn] + 3, testgs.handCount[testgs.whoseTurn]);
+       10:   23:	gs.discardCount[gs.whoseTurn] = 4;  
+       10:   24:	memcpy(&testgs, &gs, sizeof(struct gameState));
+       10:   25:	mySmithyFunction(&testgs, 0, 1);
+       10:   26:	discardCard(0, gs.whoseTurn, &gs, 0);
+       10:   27:	printf("Card Count --> EXPECTED: %d, GOT: %d\n", gs.discardCount[gs.whoseTurn], testgs.discardCount[testgs.whoseTurn]);
+       10:   28:	printf("BEGIN Card Test 2, cardtest2.c: Smithy\n");
+       10:   29:	return 0;
+        -:   30:}

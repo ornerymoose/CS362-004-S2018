@@ -1,0 +1,506 @@
+UNIT TEST: whoseTurn() function
+INIT GAME WITH 2 PLAYERS: UP TO 4
+PASSING
+PASSING
+PASSING
+File 'unittest1.c'
+Lines executed:100.00% of 10
+Branches executed:100.00% of 4
+Taken at least once:75.00% of 4
+No calls
+unittest1.c:creating 'unittest1.c.gcov'
+
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:6
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <stdio.h>
+        -:    4:#include <assert.h>
+        -:    5:
+        -:    6:/*
+        -:    7:	UNIT TEST: whosTurn()
+        -:    8:*/
+        -:    9:
+function main called 6 returned 100% blocks executed 80%
+        -:   10:int main (int argc, char** argv)	{
+        -:   11:    struct gameState g;
+        -:   12:    int a;
+        6:   13:	int k[10] = {adventurer, gardens, minion, village, embargo, mine, cutpurse, baron, tribute, smithy};
+        -:   14:	
+        6:   15:	printf("UNIT TEST: whoseTurn() function\n");
+        6:   16:	printf("INIT GAME WITH 2 PLAYERS: UP TO 4\n");
+       48:   17:    for (int i = 2 ; i < 5 ; i++)	{
+branch  0 taken 75%
+branch  1 taken 25%
+       18:   18:        a = initializeGame(2, k, 5, &g);
+       18:   19:        a = whoseTurn(&g);
+       36:   20:        assert(a == g.whoseTurn);
+branch  0 taken 0%
+branch  1 taken 100%
+       18:   21:		printf("PASSING\n");		
+       18:   22:	}
+        6:   23:	return 0;
+        -:   24:}
+UNIT TEST: kingdomCards() function
+POSITION 0
+PASSING
+POSITION 1
+PASSING
+POSITION 2
+PASSING
+POSITION 3
+PASSING
+POSITION 4
+PASSING
+POSITION 5
+PASSING
+POSITION 6
+PASSING
+POSITION 7
+PASSING
+POSITION 8
+PASSING
+POSITION 9
+PASSING
+File 'unittest2.c'
+Lines executed:90.91% of 11
+Branches executed:100.00% of 4
+Taken at least once:75.00% of 4
+No calls
+unittest2.c:creating 'unittest2.c.gcov'
+
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:5
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <stdio.h>
+        -:    4:#include <assert.h>
+        -:    5:
+        -:    6:/*
+        -:    7:	UNIT TEST: kingdomCards()
+        -:    8:*/
+        -:    9:
+function main called 5 returned 100% blocks executed 88%
+        -:   10:int main(){
+        5:   11:	int items[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        5:   12:	printf("UNIT TEST: kingdomCards() function\n");
+        5:   13:    int *test = kingdomCards(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+      110:   14:    for (int i = 0; i < 10; i++) {
+branch  0 taken 91%
+branch  1 taken 9%
+       50:   15:        printf("POSITION %d\n", i);
+       50:   16:		if (items[i] == *(test + i)){
+branch  0 taken 100%
+branch  1 taken 0%
+       50:   17:			printf("PASSING\n");
+       50:   18:		} else {
+    #####:   19:			printf("FAILED\n");
+        -:   20:		}
+       50:   21:    }
+        5:   22:    return 0;
+        -:   23:}
+UNIT TEST: isGameOver() function
+
+NO PROVINCES LEFT:
+PASSING
+
+FIRST THREE EMPTY PILES:
+PASSING
+
+LAST 3 EMPTY PILES:
+FAILED
+File 'unittest3.c'
+Lines executed:88.57% of 35
+Branches executed:100.00% of 14
+Taken at least once:85.71% of 14
+No calls
+unittest3.c:creating 'unittest3.c.gcov'
+
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:11
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <stdio.h>
+        -:    4:#include <assert.h>
+        -:    5:
+        -:    6:/*
+        -:    7:	UNIT TEST: isGameOver()
+        -:    8:*/
+        -:    9:
+function main called 25786581001 returned 0% blocks executed 88%
+        -:   10:int main(){
+12067907750051446797:   11:    printf("UNIT TEST: isGameOver() function\n");
+        -:   12:    struct gameState state;
+12067907750051446797:   13:    int players = 2;
+12067907750051446797:   14:    int seed = 100;
+12067907750051446797:   15:	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+        -:   16:	
+12067907750051446797:   17:    initializeGame(players, k, seed, &state);
+12067907750051446797:   18:    state.supplyCount[province] = 0; 
+12067907750051446797:   19:    printf("\nNO PROVINCES LEFT:\n");
+12067907750051446797:   20:    if (isGameOver(&state)){
+branch  0 taken 1%
+branch  1 taken 1%
+111555105813627:   21:		printf("PASSING\n");
+111555105813627:   22:	} else {
+    #####:   23:		printf("FAILED\n");
+        -:   24:	}
+        9:   25:    state.supplyCount[province] = 1;
+        -:   26: 
+      614:   27:    for(int card = curse; card <= treasure_map; card++) {
+branch  0 taken 96%
+branch  1 taken 4%
+      297:   28:    	if (card < 3) {
+branch  0 taken 11%
+branch  1 taken 89%
+       33:   29:    		state.supplyCount[card] = 0;
+       33:   30:    	} else {
+      264:   31:    		state.supplyCount[card] = 5;
+        -:   32:    	}
+      297:   33:    }
+        -:   34:    
+       11:   35:    printf("\nFIRST THREE EMPTY PILES:\n");
+       11:   36:    if (isGameOver(&state)){
+branch  0 taken 100%
+branch  1 taken 0%
+       11:   37:		printf("PASSING\n");
+       11:   38:	} else {
+    #####:   39:		printf("FAILED\n");
+        -:   40:	}
+        -:   41:	
+      616:   42:    for(int card = curse; card <= treasure_map; card++) {
+branch  0 taken 96%
+branch  1 taken 4%
+      297:   43:        if (card > treasure_map - 3) {
+branch  0 taken 11%
+branch  1 taken 89%
+       33:   44:        	state.supplyCount[card] = 0;
+       33:   45:        } else {
+      264:   46:        	state.supplyCount[card] = 5;
+        -:   47:        }   
+      297:   48:    }
+        -:   49:
+       11:   50:    printf("\nLAST 3 EMPTY PILES:\n");
+       11:   51:    if (isGameOver(&state)){
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:   52:		printf("PASSING\n");
+    #####:   53:	} else {
+       11:   54:		printf("FAILED\n");
+        -:   55:	}
+       11:   56:    return 0;
+        -:   57:}
+        -:   58:
+UNIT TEST: buyCard() function
+Player 1 bought silver.
+Top of discard: 1.
+PASSED
+PASSING: buyCard()
+File 'unittest4.c'
+Lines executed:85.00% of 20
+Branches executed:100.00% of 4
+Taken at least once:50.00% of 4
+No calls
+unittest4.c:creating 'unittest4.c.gcov'
+
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:5
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <stdio.h>
+        -:    4:#include <assert.h>
+        -:    5:
+        -:    6:/*
+        -:    7:	UNIT TEST: buyCard()
+        -:    8:*/
+        -:    9:
+function main called 5 returned 100% blocks executed 75%
+        -:   10:int main() {
+        5:   11:  int passed = 0;
+        5:   12:  int p1 = 1;
+        5:   13:  int money1 = 4;
+        5:   14:  int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, great_hall};
+        -:   15:  struct gameState g;
+        5:   16:  initializeGame(2, k, 100, &g);
+        5:   17:  printf("UNIT TEST: buyCard() function\n");
+        5:   18:  g.whoseTurn = p1;
+        5:   19:  g.coins = money1;
+        5:   20:  buyCard(silver, &g);
+        5:   21:  printf("Player 1 bought silver.\n");
+        5:   22:  printf("Top of discard: %d.\n", g.discard[g.whoseTurn][g.discardCount[g.whoseTurn]]);
+        5:   23:  if (g.discard[g.whoseTurn][g.discardCount[g.whoseTurn - 1]] == silver){
+branch  0 taken 100%
+branch  1 taken 0%
+        5:   24:  	printf("PASSED\n");
+        5:   25:  } else {
+    #####:   26:    printf("FAILED\n");
+    #####:   27:    passed = 1;
+        -:   28:  }
+        5:   29:  if (passed == 0)
+branch  0 taken 100%
+branch  1 taken 0%
+        5:   30:    printf("PASSING: buyCard()\n");
+        -:   31:  else
+    #####:   32:    printf("FAILED: buyCard()\n");
+        5:   33:  return 0;
+        -:   34:}
+BEGIN Card Test 1, cardtest1.c: Adventurer
+Card Count --> EXPECTED: 7, GOT: 8
+Card Count --> EXPECTED: 7, GOT: 7
+Treasure Count --> EXPECTED: 7, GOT: 7
+END Card Test 1, cardtest1.c: Adventurer
+File 'cardtest1.c'
+Lines executed:0.00% of 40
+Branches executed:0.00% of 24
+Taken at least once:0.00% of 24
+No calls
+cardtest1.c:creating 'cardtest1.c.gcov'
+
+        -:    0:Source:cardtest1.c
+        -:    0:Graph:cardtest1.gcno
+        -:    0:Data:cardtest1.gcda
+        -:    0:Runs:0
+        -:    0:Programs:0
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <string.h>
+        -:    5:#include <stdio.h>
+        -:    6:#include <stdlib.h>
+        -:    7:#include <assert.h>
+        -:    8:
+        -:    9:/*
+        -:   10:	Card Test 1: Adventurer Card
+        -:   11:*/
+        -:   12:
+function main called 4 returned 0% blocks executed 3%
+        -:   13:int main()
+        -:   14:{	
+        -:   15:	int cardDrawn;
+        -:   16:	//treasure counts
+    #####:   17:	int treas = 0;
+    #####:   18:	int treas1 = 0;
+    #####:   19:	int treas2 = 0;
+        -:   20:	int temp[MAX_HAND];
+    #####:   21:	int seed = 1000;
+    #####:   22:	int numPlayers = 2;
+        -:   23:	struct gameState gs, testgs;
+        -:   24:	
+        -:   25:	//set up array for cards
+    #####:   26:	int k[10] = {minion, mine, adventurer, great_hall, cutpurse,
+        -:   27:	sea_hag, tribute, smithy, council_room, copper};
+        -:   28:
+    #####:   29:	printf("BEGIN Card Test 1, cardtest1.c: Adventurer\n");
+        -:   30:
+    #####:   31:	initializeGame(numPlayers, k, seed, &gs);
+    #####:   32:	memcpy(&testgs, &gs, sizeof(struct gameState));
+    #####:   33:	testgs.hand[testgs.whoseTurn][0] = minion;
+        -:   34:	
+    #####:   35:	myAdventurerFunction(&testgs, 0);
+    #####:   36:	printf("Card Count --> EXPECTED: %d, GOT: %d\n", gs.handCount[gs.whoseTurn] + 2, testgs.handCount[testgs.whoseTurn]);
+        -:   37:
+    #####:   38:	gs.discardCount[gs.whoseTurn] = 5;	
+    #####:   39:	memcpy(&testgs, &gs, sizeof(struct gameState));
+    #####:   40:	myAdventurerFunction(&testgs, 0);
+        -:   41:	
+    #####:   42:	int z = 0;
+    #####:   43:	do {
+    #####:   44:		drawCard(gs.whoseTurn, &gs);
+    #####:   45:		cardDrawn = gs.hand[gs.whoseTurn][gs.handCount[gs.whoseTurn]-1];
+    #####:   46:		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:   47:	  		treas++;
+    #####:   48:		} else {
+    #####:   49:	  		temp[z]=cardDrawn;
+    #####:   50:	  		gs.handCount[gs.whoseTurn]--; 
+    #####:   51:	  		z++;
+        -:   52:		}
+    #####:   53:    } while (treas < 4);
+branch  0 never executed
+branch  1 never executed
+    #####:   54:	printf("Card Count --> EXPECTED: %d, GOT: %d\n", gs.discardCount[gs.whoseTurn] + z, testgs.discardCount[testgs.whoseTurn]);
+        -:   55:
+    #####:   56:	for(int i = 0; i < gs.handCount[gs.whoseTurn]; i++){
+branch  0 never executed
+branch  1 never executed
+    #####:   57:		if (gs.hand[gs.whoseTurn][i] == copper || gs.hand[gs.whoseTurn][i] == silver || gs.hand[gs.whoseTurn][i] == gold){
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:   58:			treas1++;
+    #####:   59:		}		
+    #####:   60:	}
+        -:   61:	
+    #####:   62:	for(int i = 0; i < testgs.handCount[testgs.whoseTurn]; i++){
+branch  0 never executed
+branch  1 never executed
+    #####:   63:		if (testgs.hand[testgs.whoseTurn][i] == copper || testgs.hand[testgs.whoseTurn][i] == silver || testgs.hand[testgs.whoseTurn][i] == gold){
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:   64:			treas2++;
+    #####:   65:		}		
+    #####:   66:	}
+        -:   67:	
+    #####:   68:	printf("Treasure Count --> EXPECTED: %d, GOT: %d\n", treas1, treas2);
+    #####:   69:	printf("END Card Test 1, cardtest1.c: Adventurer\n");
+        -:   70:
+    #####:   71:	return 0;
+        -:   72:}
+BEGIN Card Test 2, cardtest2.c: Smithy
+Card Count --> EXPECTED: 8, GOT: 8
+Card Count --> EXPECTED: 4, GOT: 4
+BEGIN Card Test 2, cardtest2.c: Smithy
+File 'cardtest2.c'
+Lines executed:100.00% of 15
+No branches
+No calls
+cardtest2.c:creating 'cardtest2.c.gcov'
+
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:10
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <string.h>
+        -:    5:#include <stdio.h>
+        -:    6:#include <stdlib.h>
+        -:    7:#include <assert.h>
+        -:    8:
+        -:    9:/*
+        -:   10:  Card Test 2: Smithy Card
+        -:   11:*/
+        -:   12:
+function main called 10 returned 100% blocks executed 100%
+        -:   13:int main(){
+       10:   14:	int seed = 1000;
+       10:   15:  	int numPlayers = 2;
+        -:   16:	struct gameState gs, testgs;
+       10:   17:	int k[10] = {copper, minion, mine, silver, gold, cutpurse, sea_hag, tribute, smithy, council_room};
+       10:   18:	printf("BEGIN Card Test 2, cardtest2.c: Smithy\n");
+       10:   19:	initializeGame(numPlayers, k, seed, &gs);
+       10:   20:	memcpy(&testgs, &gs, sizeof(struct gameState));
+       10:   21:	mySmithyFunction(&testgs, 0, 1);
+       10:   22:	printf("Card Count --> EXPECTED: %d, GOT: %d\n", gs.handCount[gs.whoseTurn] + 3, testgs.handCount[testgs.whoseTurn]);
+       10:   23:	gs.discardCount[gs.whoseTurn] = 4;  
+       10:   24:	memcpy(&testgs, &gs, sizeof(struct gameState));
+       10:   25:	mySmithyFunction(&testgs, 0, 1);
+       10:   26:	discardCard(0, gs.whoseTurn, &gs, 0);
+       10:   27:	printf("Card Count --> EXPECTED: %d, GOT: %d\n", gs.discardCount[gs.whoseTurn], testgs.discardCount[testgs.whoseTurn]);
+       10:   28:	printf("BEGIN Card Test 2, cardtest2.c: Smithy\n");
+       10:   29:	return 0;
+        -:   30:}
+BEGIN Card Test 3, cardtest3.c: Village
+EXPECTED: 6, GOT: 5
+EXPECTED: 3, GOT: 4
+BEGIN Card Test 3, cardtest3.c: Village
+File 'cardtest3.c'
+Lines executed:100.00% of 13
+No branches
+No calls
+cardtest3.c:creating 'cardtest3.c.gcov'
+
+        -:    0:Source:cardtest3.c
+        -:    0:Graph:cardtest3.gcno
+        -:    0:Data:cardtest3.gcda
+        -:    0:Runs:10
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <string.h>
+        -:    5:#include <stdio.h>
+        -:    6:#include <stdlib.h>
+        -:    7:#include <assert.h>
+        -:    8:
+        -:    9:/*
+        -:   10:  Card Test 3: Village Card
+        -:   11:*/
+        -:   12:
+function main called 10 returned 100% blocks executed 100%
+        -:   13:int main(){
+       10:   14:	int seed = 1000;
+       10:   15:	int numPlayers = 2;
+        -:   16:	struct gameState gs, testgs;
+       10:   17:	int k[10] = {copper, minion, mine, silver, gold, cutpurse, sea_hag, tribute, smithy, council_room};
+       10:   18:	printf("BEGIN Card Test 3, cardtest3.c: Village\n");
+       10:   19:	initializeGame(numPlayers, k, seed, &gs);
+       10:   20:	memcpy(&testgs, &gs, sizeof(struct gameState));
+       10:   21:	myNewVillageFunction(&testgs, 0, 1);
+       10:   22:	printf("EXPECTED: %d, GOT: %d\n", gs.handCount[gs.whoseTurn] + 1, testgs.handCount[testgs.whoseTurn]);
+       10:   23:	memcpy(&testgs, &gs, sizeof(struct gameState));
+       10:   24:	myNewVillageFunction(&testgs, 0, 1);
+       10:   25:	printf("EXPECTED: %d, GOT: %d\n", gs.numActions + 2, testgs.numActions);
+       10:   26:	printf("BEGIN Card Test 3, cardtest3.c: Village\n");
+       10:   27:	return 0;
+        -:   28:}
+BEGIN Card Test 4, cardtest4.c: Council Room
+EXPECTED: 6, GOT: 7
+EXPECTED: 3, GOT: 1
+BEGIN Card Test 4, cardtest4.c: Council Room
+File 'cardtest4.c'
+Lines executed:100.00% of 13
+No branches
+No calls
+cardtest4.c:creating 'cardtest4.c.gcov'
+
+        -:    0:Source:cardtest4.c
+        -:    0:Graph:cardtest4.gcno
+        -:    0:Data:cardtest4.gcda
+        -:    0:Runs:12
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <string.h>
+        -:    5:#include <stdio.h>
+        -:    6:#include <stdlib.h>
+        -:    7:#include <assert.h>
+        -:    8:
+        -:    9:/*
+        -:   10:  Card Test 4: Council Room
+        -:   11:*/
+        -:   12:
+function main called 12 returned 100% blocks executed 100%
+        -:   13:int main(){
+       12:   14:	int seed = 1000;
+       12:   15:	int numPlayers = 2;
+        -:   16:	struct gameState gs, testgs;
+       12:   17:	int k[10] = {copper, minion, mine, silver, gold, cutpurse, sea_hag, tribute, smithy, council_room};
+       12:   18:	printf("BEGIN Card Test 4, cardtest4.c: Council Room\n");
+       12:   19:	initializeGame(numPlayers, k, seed, &gs);
+       12:   20:	memcpy(&testgs, &gs, sizeof(struct gameState));
+       12:   21:	myCouncilRoomFunction(&testgs, 0, 1);
+       12:   22:	printf("EXPECTED: %d, GOT: %d\n", gs.handCount[gs.whoseTurn] + 1, testgs.handCount[testgs.whoseTurn]);
+       12:   23:	memcpy(&testgs, &gs, sizeof(struct gameState));
+       12:   24:	myCouncilRoomFunction(&testgs, 0, 2);
+       12:   25:	printf("EXPECTED: %d, GOT: %d\n", gs.numActions + 2, testgs.numActions);
+       12:   26:	printf("BEGIN Card Test 4, cardtest4.c: Council Room\n");
+       12:   27:	return 0;
+        -:   28:}
