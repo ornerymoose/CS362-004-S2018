@@ -128,4 +128,9 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+//declare my functions to get rid of compiler warnings
+int myAdventurerFunction(struct gameState*, int);
+int mySmithyFunction(struct gameState*, int, int);
+int myNewVillageFunction(struct gameState*, int, int);
+int myCouncilRoomFunction(struct gameState *, int, int);
 #endif
