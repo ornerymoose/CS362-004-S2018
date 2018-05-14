@@ -24,6 +24,19 @@ testAll: dominion.o testSuite.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
+printRandom: printRandom
+	./randomtestadventurer 20 >> randomtestadventurer.out
+	./randomtestcard1 20 >> randomtestcard1.out
+	./randomtestcard2 20 >> randomtestcard2.out
+	gcov -f -b dominion.c >> randomtestadventurer.out
+	gcov -f -b dominion.c >> randomtestcard1.out
+	gcov -f -b dominion.c >> randomtestcard2.out
+
+randomTests:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard1.c rngs.c -o randomtestcard1 -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard2.c rngs.c -o randomtestcard2 -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestadventurer.c rngs.c -o randomtestadventurer -lm -g
+
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out
